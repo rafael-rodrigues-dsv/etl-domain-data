@@ -29,7 +29,7 @@ public class TransformationServiceImpl implements TransformationService {
         return converter.convert(input, tagEnum);  // Passa o tagEnum para o método convert
     }
 
-    private <I, O> Converter<I, O> getConverterForClasses(Class<I> inputClass, Class<O> outputClass) {
+    protected <I, O> Converter<I, O> getConverterForClasses(Class<I> inputClass, Class<O> outputClass) {
         if (inputClass.equals(RequestDTO.class) && outputClass.equals(DataModel.class)) {
             return (Converter<I, O>) transformRequestToModelCatalog;
         } else if (inputClass.equals(DataModel.class) && outputClass.equals(ResponseDTO.class)) {

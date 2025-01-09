@@ -17,7 +17,7 @@ public class ConverterCatalog {
         return (Converter<I, O>) converters.get(key);
     }
 
-    private String generateKey(Class<?> inputClass, Class<?> outputClass) {
+    protected String generateKey(Class<?> inputClass, Class<?> outputClass) {
         return inputClass.getName() + "->" + outputClass.getName();
     }
 }

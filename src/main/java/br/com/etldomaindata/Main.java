@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
+@lombok.Generated
 public class Main implements CommandLineRunner {
 
     @Autowired
