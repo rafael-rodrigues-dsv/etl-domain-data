@@ -2,8 +2,9 @@ package br.com.etldomaindata;
 
 import br.com.etldomaindata.dto.RequestDTO;
 import br.com.etldomaindata.dto.ResponseDTO;
+import br.com.etldomaindata.enumeration.TagEnum;
 import br.com.etldomaindata.model.DataModel;
-import br.com.etldomaindata.service.TransformationService;
+import br.com.etldomaindata.transformation.service.TransformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -22,12 +23,14 @@ public class Main implements CommandLineRunner {
                 .name("Teste Automático")
                 .build();
 
-        // ETL: RequestDTO -> DataModel
-        DataModel model = transformationService.transform(request, RequestDTO.class, DataModel.class);
-        System.out.println("Model: " + model.getName() + ", Status: " + model.getStatus());
+        // ETL: Usando o enum para determinar o catálogo e fazendo a transformação com tagEnum
+        TagEnum tagEnum = TagEnum.CGF;  // Usando o TagEnum diretamente
+        DataModel model = transformationService.transform(request, tagEnum, RequestDTO.class, DataModel.class);
+        System.out.println("Model: " + model.getId() + ", Status: " + model.getStatus());
 
         // ETL: DataModel -> ResponseDTO
-        ResponseDTO response = transformationService.transform(model, DataModel.class, ResponseDTO.class);
+        tagEnum = TagEnum.ANOTHER_TAG;  // Usando outro valor do TagEnum
+        ResponseDTO response = transformationService.transform(model, tagEnum, DataModel.class, ResponseDTO.class);
         System.out.println("Response: " + response.getId() + ", Status: " + response.getStatus());
     }
 }

@@ -1,4 +1,4 @@
-package br.com.etldomaindata.converter;
+package br.com.etldomaindata.transformation.converter;
 
 import java.util.HashMap;
 import java.util.Map;
