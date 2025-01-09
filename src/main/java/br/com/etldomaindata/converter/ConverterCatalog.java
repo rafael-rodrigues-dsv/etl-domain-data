@@ -1,7 +1,5 @@
 package br.com.etldomaindata.converter;
 
-import br.com.etldomaindata.converter.Converter;
-
 import java.util.HashMap;
 import java.util.Map;
 

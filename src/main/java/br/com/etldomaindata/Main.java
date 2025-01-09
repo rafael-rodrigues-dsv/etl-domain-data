@@ -1,22 +1,21 @@
 package br.com.etldomaindata;
 
-import br.com.etldomaindata.converter.ConverterCatalog;
-import br.com.etldomaindata.converter.ConverterRegistry;
 import br.com.etldomaindata.dto.RequestDTO;
 import br.com.etldomaindata.dto.ResponseDTO;
 import br.com.etldomaindata.model.DataModel;
-import br.com.etldomaindata.service.TransformationServiceImpl;
+import br.com.etldomaindata.service.TransformationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
-public class Main {
-    public static void main(String[] args) {
-        // Catálogo e ETL configurados automaticamente
-        ConverterCatalog catalog = new ConverterCatalog();
+@Component
+public class Main implements CommandLineRunner {
 
-        // Registrar todos os conversores
-        ConverterRegistry.registerAll(catalog);
+    @Autowired
+    private TransformationService transformationService; // Injeção automática do Spring
 
-        TransformationServiceImpl transformationServiceImpl = new TransformationServiceImpl(catalog);
-
+    @Override
+    public void run(String... args) throws Exception {
         // Entrada inicial
         RequestDTO request = RequestDTO.builder()
                 .id("123")
@@ -24,11 +23,11 @@ public class Main {
                 .build();
 
         // ETL: RequestDTO -> DataModel
-        DataModel model = transformationServiceImpl.transform(request, RequestDTO.class, DataModel.class);
+        DataModel model = transformationService.transform(request, RequestDTO.class, DataModel.class);
         System.out.println("Model: " + model.getName() + ", Status: " + model.getStatus());
 
         // ETL: DataModel -> ResponseDTO
-        ResponseDTO response = transformationServiceImpl.transform(model, DataModel.class, ResponseDTO.class);
+        ResponseDTO response = transformationService.transform(model, DataModel.class, ResponseDTO.class);
         System.out.println("Response: " + response.getId() + ", Status: " + response.getStatus());
     }
 }
