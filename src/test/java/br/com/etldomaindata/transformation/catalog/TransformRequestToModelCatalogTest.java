@@ -1,9 +1,9 @@
-package br.com.etldomaindata.transformation.catalog.response;
+package br.com.etldomaindata.transformation.catalog;
 
 import br.com.etldomaindata.dto.RequestDTO;
 import br.com.etldomaindata.enumeration.TagEnum;
 import br.com.etldomaindata.model.DataModel;
-import br.com.etldomaindata.transformation.catalog.request.TransformRequestToModelCatalog;
+import br.com.etldomaindata.transformation.catalog.TransformRequestToModelCatalog;
 import br.com.etldomaindata.transformation.mapper.request.AnotherTagRequestMapper;
 import br.com.etldomaindata.transformation.mapper.request.CGFRequestMapper;
 import br.com.etldomaindata.transformation.mapper.request.DefaultRequestMapper;

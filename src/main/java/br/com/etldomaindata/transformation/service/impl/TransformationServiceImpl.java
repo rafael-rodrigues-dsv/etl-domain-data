@@ -4,8 +4,8 @@ import br.com.etldomaindata.dto.RequestDTO;
 import br.com.etldomaindata.dto.ResponseDTO;
 import br.com.etldomaindata.enumeration.TagEnum;
 import br.com.etldomaindata.model.DataModel;
-import br.com.etldomaindata.transformation.catalog.response.TransformModelToResponseCatalog;
-import br.com.etldomaindata.transformation.catalog.request.TransformRequestToModelCatalog;
+import br.com.etldomaindata.transformation.catalog.TransformModelToResponseCatalog;
+import br.com.etldomaindata.transformation.catalog.TransformRequestToModelCatalog;
 import br.com.etldomaindata.transformation.converter.TransformationConverter;
 import br.com.etldomaindata.transformation.service.TransformationService;
 
