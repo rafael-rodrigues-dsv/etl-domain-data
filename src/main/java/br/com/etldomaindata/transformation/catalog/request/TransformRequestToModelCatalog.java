@@ -1,4 +1,4 @@
-package br.com.etldomaindata.transformation.catalog;
+package br.com.etldomaindata.transformation.catalog.request;
 
 import br.com.etldomaindata.dto.RequestDTO;
 import br.com.etldomaindata.enumeration.TagEnum;
