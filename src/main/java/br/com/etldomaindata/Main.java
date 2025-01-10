@@ -26,12 +26,12 @@ public class Main implements CommandLineRunner {
 
         // ETL: Usando o enum para determinar o catálogo e fazendo a transformação com tagEnum
         TagEnum tagEnum = TagEnum.CGF;  // Usando o TagEnum diretamente
-        DataModel model = transformationService.transform(request, tagEnum, RequestDTO.class, DataModel.class);
+        DataModel model = transformationService.transform(request, tagEnum, DataModel.class);
         System.out.println("Model: " + model.getId() + ", Status: " + model.getStatus());
 
         // ETL: DataModel -> ResponseDTO
         tagEnum = TagEnum.ANOTHER_TAG;  // Usando outro valor do TagEnum
-        ResponseDTO response = transformationService.transform(model, tagEnum, DataModel.class, ResponseDTO.class);
+        ResponseDTO response = transformationService.transform(model, tagEnum, ResponseDTO.class);
         System.out.println("Response: " + response.getId() + ", Status: " + response.getStatus());
     }
 }

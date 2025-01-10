@@ -18,7 +18,7 @@ class TagEnumTest {
     void testEnumValuesOrder() {
         // Verifica se a ordem dos valores no enum está correta
         TagEnum[] values = TagEnum.values();
-        assertEquals(2, values.length);
+        assertEquals(3, values.length);
         assertEquals(TagEnum.CGF, values[0]);
         assertEquals(TagEnum.ANOTHER_TAG, values[1]);
     }

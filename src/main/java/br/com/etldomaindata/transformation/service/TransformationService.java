@@ -5,15 +5,14 @@ import br.com.etldomaindata.enumeration.TagEnum;
 public interface TransformationService {
 
     /**
-     * Realiza a transformação de um objeto de entrada para um objeto de saída com base no tagEnum.
+     * Realiza a conversão de um objeto de entrada para um objeto de saída.
      *
-     * @param input O objeto de entrada a ser transformado
-     * @param tagEnum O enum que determina o comportamento da transformação
-     * @param inputClass A classe do objeto de entrada
-     * @param outputClass A classe do objeto de saída
-     * @param <I> Tipo do objeto de entrada
-     * @param <O> Tipo do objeto de saída
-     * @return O objeto transformado no tipo desejado
+     * @param input      O objeto de entrada a ser convertido
+     * @param tagEnum    O enum de tag para determinar qual conversor utilizar
+     * @param outputClass A classe do tipo de saída esperado
+     * @return O objeto de saída resultante da conversão
+     * @throws IllegalArgumentException Se nenhum conversor for encontrado para a combinação de entradas/saidas
      */
-    <I, O> O transform(I input, TagEnum tagEnum, Class<I> inputClass, Class<O> outputClass);
+    <I, O> O transform(I input, TagEnum tagEnum, Class<O> outputClass);
+
 }

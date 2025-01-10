@@ -1,30 +1,25 @@
 package br.com.etldomaindata.transformation.catalog;
 
-import br.com.etldomaindata.transformation.converter.Converter;
 import br.com.etldomaindata.dto.RequestDTO;
 import br.com.etldomaindata.enumeration.TagEnum;
 import br.com.etldomaindata.model.DataModel;
+import br.com.etldomaindata.transformation.converter.TransformationConverter;
+import br.com.etldomaindata.transformation.mapper.request.AnotherTagRequestMapper;
+import br.com.etldomaindata.transformation.mapper.request.CGFRequestMapper;
+import br.com.etldomaindata.transformation.mapper.request.DefaultRequestMapper;
 
-public class TransformRequestToModelCatalog implements Converter<RequestDTO, DataModel> {
+public class TransformRequestToModelCatalog implements TransformationConverter<RequestDTO, DataModel> {
 
     @Override
     public DataModel convert(RequestDTO input, TagEnum tagEnum) {
-        DataModel model = new DataModel();
-
-        // Lógica baseada no tagEnum
-        if (tagEnum == TagEnum.CGF) {
-            model.setId(input.getId());
-            model.setStatus("Status para CGF");
-        } else if (tagEnum == TagEnum.ANOTHER_TAG) {
-            // Outra lógica baseada em tagEnum
-            model.setId(input.getId());
-            model.setStatus("Status para ANOTHER_TAG");
-        } else {
-            // Lógica padrão para outros tagEnum
-            model.setId(input.getId());
-            model.setStatus("Status padrão");
+        switch (tagEnum) {
+            case CGF:
+                return CGFRequestMapper.map(input);
+            case ANOTHER_TAG:
+                return AnotherTagRequestMapper.map(input);
+            default:
+                return DefaultRequestMapper.map(input);
         }
-
-        return model;
     }
 }
+
